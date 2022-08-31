@@ -1,0 +1,57 @@
+.carousel-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 0.4rem solid black;
+  height: 40rem;
+}
+
+.images-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.fa-angle-left {
+  position: absolute;
+  left: 3rem;
+  font-size: 3rem;
+}
+
+.fa-angle-right {
+  position: absolute;
+  right: 3rem;
+  font-size: 3rem;
+}
+
+button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.fa-circle {
+  font-size: 1.3rem;
+}
+
+img {
+  height: 30rem;
+  padding: 1.5rem;
+}
+
+.circle-container {
+  width: 10rem;
+  display: flex;
+  justify-content: space-around;
+}
+
+.hidden {
+  display: none;
+}
