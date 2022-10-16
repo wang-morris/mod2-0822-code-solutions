@@ -28,7 +28,6 @@ const grades = {
 };
 
 app.get('/api/grades', (req, res) => {
-  const array = [];
-  array.push(grades[12], grades[47], grades[273]);
+  const array = Object.values(grades);
   res.json(array);
 });
