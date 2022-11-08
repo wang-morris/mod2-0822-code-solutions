@@ -4,7 +4,6 @@ const myPromise = takeAChance('Morris');
 
 myPromise.then(name => {
   console.log(`${name}`);
-  throw new Error();
 })
   .catch(e => {
     console.log(e.message);
