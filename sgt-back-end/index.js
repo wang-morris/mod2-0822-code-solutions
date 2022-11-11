@@ -46,8 +46,10 @@ app.post('/api/grades', (req, res, next) => {
     res.status(400).json({ error: 'missing required name, course, or grade field' });
   } else if (typeof values[0] !== 'string' || typeof values[1] !== 'string') {
     res.status(400).json({ error: 'the name and course must be a valid alphabetical characters' });
-  } else if ((typeof values[2] !== 'number') && values[2] < 0) {
+  } else if (typeof values[2] !== 'number') {
     res.status(400).json({ error: 'the grade must be a positive number' });
+  } else if (values[2] > 100 || values[2] < 0) {
+    res.status(400).json({ error: 'the grade must be a number from 0 to 100' });
   } else {
     // queries db and updates table; error message if query fails
     db.query(sql, values)
@@ -79,10 +81,12 @@ app.put('/api/grades/:gradeId', (req, res, next) => {
     res.status(400).json({ error: 'the grade and gradeId are required fields' });
   } else if (typeof params[0] !== 'number' || typeof params[1] !== 'number') {
     res.status(400).json({ error: 'the grade and gradeId must be numberic values' });
-  } else if (params[0] < 0 || params[1] < 0) {
-    res.status(400).json({ error: 'the grade and gradeId must be a positive number' });
-  } else {
+  } else if (params[1] < 0) {
+    res.status(400).json({ error: 'the gradeId must be a positive number' });
+  } else if (params[0] > 100 || params[0] < 0) {
+    res.status(400).json({ error: 'the grade must be a number between 0 and 100' });
     // queries db and returns updated grade row; Checks if grade does not exist in db and sends error message if query fails
+  } else {
     db.query(sql, params)
       .then(result => {
         if (!result.rows.length) {
